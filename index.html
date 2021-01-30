@@ -32,93 +32,129 @@
     <!--Booking Section-->
     <main>
         <section class="main-content container">
-            <div id="before-buy-ticket" class="booking-form">
-                <h3>Booking Flights</h3>
-                <div class="input-group">
-                    <label for="">Flying From</label>
-                    <input class="inp-style" type="text" name="" placeholder="Dhaka, Bangladesh" required>
-                </div>
-                <div class="input-group">
-                    <label for="">Flying To</label>
-                    <input class="inp-style" type="text" name="" placeholder="New York, United States" required>
-                </div>
-                <div class="inputs">
+            <div>
+                <div id="buy-ticket" class="booking-form">
+                    <h3>Booking Flights</h3>
                     <div class="input-group">
-                        <label" for="">Departure</label>
-                            <input class="inp-style" type="date" name="" required>
+                        <label for="">Flying From</label>
+                        <input class="inp-style" id="from" type="text" name="" placeholder="Dhaka, Bangladesh" required>
                     </div>
                     <div class="input-group">
-                        <label for="">Return</label>
-                        <input class="inp-style" type="date" name="" required>
+                        <label for="">Flying To</label>
+                        <input class="inp-style" id="to" type="text" name="" placeholder="New York, United States"
+                            required>
                     </div>
-                </div>
-                <div class="input-group f-class">
-                    <div>
-                        <label for="">First Class ($150)</label>
-                        <input id="first-class-count" class="inp-style inp-width" type="number" name="" readonly>
-                    </div>
-                    <div class="plus-minus-btn">
-                        <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" onclick="handleTicketChange('first-class', false)"
-                                class="btn btn-outline-danger"><i class="fa fa-minus"></i></button>
-                            <button type="button" onclick="handleTicketChange('first-class', true)"
-                                class="btn btn-outline-success"><i class="fa fa-plus"></i></button>
+                    <div class="inputs">
+                        <div class="input-group">
+                            <label" for="">Departure</label>
+                                <input id="departure" class="inp-style" type="date" name="" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="">Return</label>
+                            <input id="return" class="inp-style" type="date" name="" required>
                         </div>
                     </div>
-                </div>
-
-                <div class="input-group f-class">
-                    <div>
-                        <label for="">Economy ($100)</label>
-                        <input id="economy-count" class="inp-style inp-width" type="number" name="" readonly>
-                    </div>
-                    <div class="plus-minus-btn">
-                        <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" onclick="handleTicketChange('economy', false)"
-                                class="btn btn-outline-danger"><i class="fa fa-minus"></i></button>
-                            <button type="button" onclick="handleTicketChange('economy', true)"
-                                class="btn btn-outline-success"><i class="fa fa-plus"></i></button>
+                    <div class="input-group f-class">
+                        <div>
+                            <label for="">First Class ($150)</label>
+                            <input id="first-class-count" class="inp-style inp-width" type="number" name="" readonly>
                         </div>
-                    </div>
-                </div>
-                <div class="calculations">
-                    <div class="amount">
-                        <div class="left">
-                            <p>Subtotal</p>
-                        </div>
-                        <div class="right">
-                            <p>$<span id="total-price">---</span></p>
+                        <div class="plus-minus-btn">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" onclick="handleTicketChange('first-class', false)"
+                                    class="btn btn-outline-danger"><i class="fa fa-minus"></i></button>
+                                <button type="button" onclick="handleTicketChange('first-class', true)"
+                                    class="btn btn-outline-success"><i class="fa fa-plus"></i></button>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="amount">
-                        <div class="left">
-                            <p>Charge 10% VAT</p>
+                    <div class="input-group f-class">
+                        <div>
+                            <label for="">Economy ($100)</label>
+                            <input id="economy-count" class="inp-style inp-width" type="number" name="" readonly>
                         </div>
-                        <div class="right">
-                            <p>$<span id="tax-amount">---</span></p>
+                        <div class="plus-minus-btn">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" onclick="handleTicketChange('economy', false)"
+                                    class="btn btn-outline-danger"><i class="fa fa-minus"></i></button>
+                                <button type="button" onclick="handleTicketChange('economy', true)"
+                                    class="btn btn-outline-success"><i class="fa fa-plus"></i></button>
+                            </div>
                         </div>
                     </div>
-                    <hr>
-                    <div class="amount">
-                        <div class="left">
-                            <h4>Total</h4>
+                    <div class="calculations">
+                        <div class="amount">
+                            <div class="left">
+                                <p>Subtotal</p>
+                            </div>
+                            <div class="right">
+                                <p>$<span id="total-price">---</span></p>
+                            </div>
                         </div>
-                        <div class="right">
-                            <p>$<span id="grand-total">---</span></p>
+
+                        <div class="amount">
+                            <div class="left">
+                                <p>Charge 10% VAT</p>
+                            </div>
+                            <div class="right">
+                                <p>$<span id="tax-amount">---</span></p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="amount">
+                            <div class="left">
+                                <h4>Total</h4>
+                            </div>
+                            <div class="right">
+                                <p>$<span id="grand-total">00</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="confirmationBtn" class="btn-style" onclick="confirmBooking()">Book Now</button>
+                </div>
+                <div class="confirmation booking-form" id="confirmation" style="display: none">
+                    <div class="card border-0" style="width: 18rem;">
+                        <img src="images/confirmation.png" class="card-img-top" alt="..." width="35px" height="200px"
+                            padding="20px">
+                        <div class="card-body">
+                            <h5 class="card-title">Ticket Booking Confirmed.</h5>
+                            <p class="card-text">Please, complete your payment for further processing.</p>
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">From</th>
+                                        <td>:</td>
+                                        <td id="confirmation-from"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">To</th>
+                                        <td>:</td>
+                                        <td id="confirmation-to"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Departure</th>
+                                        <td>:</td>
+                                        <td id="confirmation-departure"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Return</th>
+                                        <td>:</td>
+                                        <td id="confirmation-return"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Total Cost</th>
+                                        <td>:</td>
+                                        <td id="confirmation-cost"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <a href="#" class="btn btn-info" style="color: white">Go to Payment</a>
                         </div>
                     </div>
                 </div>
-                <button id="complete-buy-ticket" class="btn-style">Book Now</button>
 
             </div>
-            <!-- <div id="after-buy-ticket" class="buy-done-ticket">
-                <p class="after-buy-p">Thank You.....</p>
-                <p>Successfully Buy <span id="after-buy-first-class">0</span> First Class and <span
-                        id="after-buy-economy">0</span> Economy Tickets.</p>
-                <button id="again-buy-ticket" class="btn-style-after">Again Book Now</button>
-            </div> -->
-
             <div class="booking-content">
                 <h1>discover <br> around the world</h1>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias

@@ -12,7 +12,6 @@ function getInputValue(ticket) {
 function handleTicketChange(ticket, isIncrease) {
 
     const ticketCount = getInputValue(ticket);
-    //console.log(ticketCount);
     let ticketNewCount = ticketCount;
     if (isIncrease == true) {
         ticketNewCount = ticketCount + 1;
@@ -21,30 +20,36 @@ function handleTicketChange(ticket, isIncrease) {
         ticketNewCount = ticketCount - 1;
     }
     document.getElementById(ticket + '-count').value = ticketNewCount;
-    // const firstClassTotal;
-    // const economyTotal;
-    // if (ticket == 'first-class') {
-    //     firstClassTotal = ticketNewCount * 150;
-    // }
-    // if (ticket == 'economy') {
-    //     economyTotal = ticketNewCount * 100;
-    // }
-    // const ticketTotal = firstClassTotal + economyTotal;
-    // console.log(ticketTotal);
-    // document.getElementById(ticket + '-total').innerText = '$' + ticketTotal;
     calculateTotal();
 }
 
 function calculateTotal() {
     const firstClassCount = getInputValue('first-class');
     const economyCount = getInputValue('economy');
-
     const totalPrice = firstClassCount * 150 + economyCount * 100;
     document.getElementById('total-price').innerText = totalPrice;
-
     const tax = Math.round(totalPrice * 0.1);
     document.getElementById('tax-amount').innerText = tax;
-
     const grandTotal = totalPrice + tax;
     document.getElementById('grand-total').innerText = grandTotal;
+}
+
+
+function confirmBooking() {
+    var from = document.getElementById('from').value;
+    var to = document.getElementById('to').value;
+    var departureDate = document.getElementById('departure').value;
+    var returnDate = document.getElementById('return').value;
+    var cost = document.getElementById('grand-total').innerText;
+    if (from == null || from == "" && to == null || to == "" && departureDate == null || departureDate == "" && returnDate == null || returnDate == "" || cost <= 0) {
+        alert("Please Fill All Required Field");
+    } else {
+        document.getElementById("buy-ticket").style.display = "none";
+        document.getElementById("confirmation").style.display = "block";
+        document.getElementById('confirmation-from').innerText = from;
+        document.getElementById('confirmation-to').innerText = to;
+        document.getElementById('confirmation-departure').innerText = departureDate;
+        document.getElementById('confirmation-return').innerText = returnDate;
+        document.getElementById('confirmation-cost').innerText = cost;
+    }
 }
