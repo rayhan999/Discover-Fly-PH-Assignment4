@@ -1,5 +1,5 @@
 function getInputValue(ticket) {
-    var ticketCount;
+    let ticketCount;
     const ticketInput = document.getElementById(ticket + '-count');
     if (ticketInput.value == "") {
         ticketCount = 0;
@@ -21,14 +21,30 @@ function handleTicketChange(ticket, isIncrease) {
         ticketNewCount = ticketCount - 1;
     }
     document.getElementById(ticket + '-count').value = ticketNewCount;
-    // let productTotal = 0;
-    // if (product == 'phone') {
-    //     productTotal = productNewCount * 1219;
+    // const firstClassTotal;
+    // const economyTotal;
+    // if (ticket == 'first-class') {
+    //     firstClassTotal = ticketNewCount * 150;
     // }
-    // if (product == 'case') {
-    //     productTotal = productNewCount * 59;
+    // if (ticket == 'economy') {
+    //     economyTotal = ticketNewCount * 100;
     // }
+    // const ticketTotal = firstClassTotal + economyTotal;
+    // console.log(ticketTotal);
+    // document.getElementById(ticket + '-total').innerText = '$' + ticketTotal;
+    calculateTotal();
+}
 
-    // document.getElementById(product + '-total').innerText = '$' + productTotal;
-    // calculateTotal();
+function calculateTotal() {
+    const firstClassCount = getInputValue('first-class');
+    const economyCount = getInputValue('economy');
+
+    const totalPrice = firstClassCount * 150 + economyCount * 100;
+    document.getElementById('total-price').innerText = totalPrice;
+
+    const tax = Math.round(totalPrice * 0.1);
+    document.getElementById('tax-amount').innerText = tax;
+
+    const grandTotal = totalPrice + tax;
+    document.getElementById('grand-total').innerText = grandTotal;
 }
